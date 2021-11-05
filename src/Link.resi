@@ -1,6 +1,6 @@
 type t<'payload>
 
-module CurveType : {
+module CurveType: {
   type t
 
   let straight: t
@@ -16,7 +16,7 @@ module LineCap: {
   let square: t
 }
 
-module Config : {
+module Config: {
   type t<'payload> = {
     color: option<Color.t>,
     fontColor: option<Color.t>,
@@ -26,7 +26,7 @@ module Config : {
     highlightFontColor: option<Color.t>,
     highlightFontSize: option<float>,
     highlightFontWeight: option<string>,
-    labelProperty: option<(t<'payload> => string)>,
+    labelProperty: option<t<'payload> => string>,
     mouseCursor: option<MouseCursor.t>,
     opacity: option<float>,
     renderLabel: option<bool>,
@@ -37,15 +37,15 @@ module Config : {
     @as("type") curveType: option<CurveType.t>,
     strokeDasharray: option<float>,
     strokeDashoffset: option<float>,
-    strokeLinecap: option<LineCap.t>
+    strokeLinecap: option<LineCap.t>,
   }
 }
 
 let create: (
-  ~source:Node.Id.t,
-  ~target:Node.Id.t,
-  ~payload:'payload=?,
-  ~config:Config.t<'payload>=?,
-  ~breakpoints:array<{"x":float,"y":float}>=?,
-  unit
+  ~source: Node.Id.t,
+  ~target: Node.Id.t,
+  ~payload: 'payload=?,
+  ~config: Config.t<'payload>=?,
+  ~breakpoints: array<{"x": float, "y": float}>=?,
+  unit,
 ) => t<'payload>
