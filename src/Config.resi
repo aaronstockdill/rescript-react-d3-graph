@@ -1,6 +1,6 @@
 type t<'n, 'e>
 
-module Global : {
+module Global: {
   type t = {
     automaticRearrangeAfterDropNode: option<bool>,
     collapsible: option<bool>,
@@ -10,7 +10,7 @@ module Global : {
     maxZoom: option<float>,
     minZoom: option<float>,
     freezeAllDragEvents: option<bool>,
-    focusAnimationDuration: option<bool>,
+    focusAnimationDuration: option<float>,
     width: option<int>,
     height: option<int>,
     nodeHighlightBehavior: option<bool>,
@@ -21,16 +21,47 @@ module Global : {
     staticGraph: option<bool>,
     staticGraphWithDragAndDrop: option<bool>,
   }
+
+  let create: (
+    ~automaticRearrangeAfterDropNode: bool=?,
+    ~collapsible: bool=?,
+    ~directed: bool=?,
+    ~initialZoom: float=?,
+    ~focusZoom: float=?,
+    ~maxZoom: float=?,
+    ~minZoom: float=?,
+    ~freezeAllDragEvents: bool=?,
+    ~focusAnimationDuration: float=?,
+    ~width: int=?,
+    ~height: int=?,
+    ~nodeHighlightBehavior: bool=?,
+    ~linkHighlightBehavior: bool=?,
+    ~highlightDegree: int=?,
+    ~highlightOpacity: float=?,
+    ~panAndZoom: bool=?,
+    ~staticGraph: bool=?,
+    ~staticGraphWithDragAndDrop: bool=?,
+    unit,
+  ) => t
 }
 
-module D3 : {
+module D3: {
   type t = {
     alphaTarget: option<float>,
     gravity: option<float>,
     linkLength: option<float>,
     linkStrength: option<float>,
-    disableLinkForce: option<bool>
+    disableLinkForce: option<bool>,
   }
+
+  let create: (
+    ~alphaTarget: float=?,
+    ~gravity: float=?,
+    ~linkLength: float=?,
+    ~linkStrength: float=?,
+    ~disableLinkForce: bool=?,
+    unit,
+  ) => t
 }
 
 let create: (
@@ -38,5 +69,5 @@ let create: (
   ~d3: D3.t=?,
   ~node: Node.Config.t<'n>=?,
   ~link: Link.Config.t<'e>=?,
-  unit
+  unit,
 ) => t<'n, 'e>

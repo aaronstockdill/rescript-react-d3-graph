@@ -1,12 +1,12 @@
 type t<'payload>
 
-module Id : {
+module Id: {
   type t
   let ofString: string => t
   let toString: t => string
 }
 
-module LabelPosition : {
+module LabelPosition: {
   type t
   let left: t
   let right: t
@@ -15,7 +15,7 @@ module LabelPosition : {
   let center: t
 }
 
-module SymbolType : {
+module SymbolType: {
   type t
   let circle: t
   let cross: t
@@ -26,7 +26,8 @@ module SymbolType : {
   let wye: t
 }
 
-module Config : {
+module Config: {
+  type node<'payload> = t<'payload>
   type t<'payload> = {
     color: option<Color.t>,
     fontColor: option<Color.t>,
@@ -38,22 +39,48 @@ module Config : {
     highlightStrokeColor: option<Color.t>,
     highlightStrokeWidth: option<float>,
     labelPosition: option<LabelPosition.t>,
-    labelProperty: option<(t<'payload> => string)>,
+    labelProperty: option<node<'payload> => string>,
     mouseCursor: option<MouseCursor.t>,
     opacity: option<float>,
     renderLabel: option<bool>,
     size: option<{"width": float, "height": float}>,
     strokeColor: option<Color.t>,
     strokeWidth: option<float>,
-    svg:option<string>,
+    svg: option<string>,
     symbolType: option<SymbolType.t>,
-    viewGenerator: option<(t<'payload> => React.element)>,
+    viewGenerator: option<node<'payload> => React.element>,
   }
+
+  let create: (
+    ~color: Color.t=?,
+    ~fontColor: Color.t=?,
+    ~fontSize: float=?,
+    ~fontWeight: string=?,
+    ~highlightColor: Color.t=?,
+    ~highlightFontSize: float=?,
+    ~highlightFontWeight: string=?,
+    ~highlightStrokeColor: Color.t=?,
+    ~highlightStrokeWidth: float=?,
+    ~labelPosition: LabelPosition.t=?,
+    ~labelProperty: node<'a> => string=?,
+    ~mouseCursor: MouseCursor.t=?,
+    ~opacity: float=?,
+    ~renderLabel: bool=?,
+    ~size: {"width": float, "height": float}=?,
+    ~strokeColor: Color.t=?,
+    ~strokeWidth: float=?,
+    ~svg: string=?,
+    ~symbolType: SymbolType.t=?,
+    ~viewGenerator: node<'a> => React.element=?,
+    unit,
+  ) => t<'a>
 }
 
-let create:(
-  ~id:Id.t,
-  ~payload:'payload=?,
-  ~config:Config.t<'payload>=?,
-  unit
+let create: (
+  ~id: Id.t,
+  ~payload: 'payload=?,
+  ~config: Config.t<'payload>=?,
+  ~x: float=?,
+  ~y: float=?,
+  unit,
 ) => t<'payload>

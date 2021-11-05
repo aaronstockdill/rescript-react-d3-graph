@@ -17,6 +17,7 @@ module LineCap: {
 }
 
 module Config: {
+  type link<'payload> = t<'payload>
   type t<'payload> = {
     color: option<Color.t>,
     fontColor: option<Color.t>,
@@ -26,7 +27,7 @@ module Config: {
     highlightFontColor: option<Color.t>,
     highlightFontSize: option<float>,
     highlightFontWeight: option<string>,
-    labelProperty: option<t<'payload> => string>,
+    labelProperty: option<link<'payload> => string>,
     mouseCursor: option<MouseCursor.t>,
     opacity: option<float>,
     renderLabel: option<bool>,
@@ -39,6 +40,30 @@ module Config: {
     strokeDashoffset: option<float>,
     strokeLinecap: option<LineCap.t>,
   }
+
+  let create: (
+    ~color:Color.t=?,
+    ~fontColor:Color.t=?,
+    ~fontSize:float=?,
+    ~fontWeight:string=?,
+    ~highlightColor:Color.t=?,
+    ~highlightFontColor:Color.t=?,
+    ~highlightFontSize:float=?,
+    ~highlightFontWeight:string=?,
+    ~labelProperty:link<'payload> => string =?,
+    ~mouseCursor:MouseCursor.t=?,
+    ~opacity:float=?,
+    ~renderLabel:bool=?,
+    ~semanticStrokeWidth:bool=?,
+    ~strokeWidth:float=?,
+    ~markerHeight:float=?,
+    ~markerWidth:float=?,
+    ~curveType:CurveType.t=?,
+    ~strokeDasharray:float=?,
+    ~strokeDashoffset:float=?,
+    ~strokeLinecap:LineCap.t=?,
+    unit
+  ) => t<'payload>
 }
 
 let create: (

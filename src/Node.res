@@ -27,7 +27,9 @@ module Id = {
 type rec t<'payload> = {
   id: Id.t,
   payload: option<'payload>,
-  config: option<config<'payload>>
+  config: option<config<'payload>>,
+  x: option<float>,
+  y: option<float>,
 }
 and config<'payload> = {
   color: option<Color.t>,
@@ -40,20 +42,21 @@ and config<'payload> = {
   highlightStrokeColor: option<Color.t>,
   highlightStrokeWidth: option<float>,
   labelPosition: option<LabelPosition.t>,
-  labelProperty: option<(t<'payload> => string)>,
+  labelProperty: option<t<'payload> => string>,
   mouseCursor: option<MouseCursor.t>,
   opacity: option<float>,
   renderLabel: option<bool>,
   size: option<{"width": float, "height": float}>,
   strokeColor: option<Color.t>,
   strokeWidth: option<float>,
-  svg:option<string>,
+  svg: option<string>,
   symbolType: option<SymbolType.t>,
-  viewGenerator: option<(t<'payload> => React.element)>,
+  viewGenerator: option<t<'payload> => React.element>,
 }
 
 module Config = {
-  type t<'payload> = config<'payload> = {
+  type node<'payload> = t<'payload>
+  type  t<'payload> = config<'payload> = {
     color: option<Color.t>,
     fontColor: option<Color.t>,
     fontSize: option<float>,
@@ -64,28 +67,72 @@ module Config = {
     highlightStrokeColor: option<Color.t>,
     highlightStrokeWidth: option<float>,
     labelPosition: option<LabelPosition.t>,
-    labelProperty: option<(t<'payload> => string)>,
+    labelProperty: option<node<'payload> => string>,
     mouseCursor: option<MouseCursor.t>,
     opacity: option<float>,
     renderLabel: option<bool>,
     size: option<{"width": float, "height": float}>,
     strokeColor: option<Color.t>,
     strokeWidth: option<float>,
-    svg:option<string>,
+    svg: option<string>,
     symbolType: option<SymbolType.t>,
-    viewGenerator: option<(t<'payload> => React.element)>,
+    viewGenerator: option<node<'payload> => React.element>,
+  }
+
+  let create = (
+    ~color=?,
+    ~fontColor=?,
+    ~fontSize=?,
+    ~fontWeight=?,
+    ~highlightColor=?,
+    ~highlightFontSize=?,
+    ~highlightFontWeight=?,
+    ~highlightStrokeColor=?,
+    ~highlightStrokeWidth=?,
+    ~labelPosition=?,
+    ~labelProperty=?,
+    ~mouseCursor=?,
+    ~opacity=?,
+    ~renderLabel=?,
+    ~size=?,
+    ~strokeColor=?,
+    ~strokeWidth=?,
+    ~svg=?,
+    ~symbolType=?,
+    ~viewGenerator=?,
+    (),
+  ) => {
+    color: color,
+    fontColor: fontColor,
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+    highlightColor: highlightColor,
+    highlightFontSize: highlightFontSize,
+    highlightFontWeight: highlightFontWeight,
+    highlightStrokeColor: highlightStrokeColor,
+    highlightStrokeWidth: highlightStrokeWidth,
+    labelPosition: labelPosition,
+    labelProperty: labelProperty,
+    mouseCursor: mouseCursor,
+    opacity: opacity,
+    renderLabel: renderLabel,
+    size: size,
+    strokeColor: strokeColor,
+    strokeWidth: strokeWidth,
+    svg: svg,
+    symbolType: symbolType,
+    viewGenerator: viewGenerator,
   }
 }
 
-let create = (
-  ~id,
-  ~payload=?,
-  ~config=?,
-  _
-) => {
+let create = (~id, ~payload=?, ~config=?, ~x=?, ~y=?, _) => {
   {
     id: id,
     payload: payload,
+    x: x,
+    y: y,
     config: None,
-  }->Core.pack(config)->Core.dropUndefinedKeys
+  }
+  ->Core.pack(config)
+  ->Core.dropUndefinedKeys
 }

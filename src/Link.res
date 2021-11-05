@@ -45,6 +45,7 @@ and config<'payload> = {
 }
 
 module Config = {
+  type link<'payload> = t<'payload>
   type t<'payload> = config<'payload> = {
     color: option<Color.t>,
     fontColor: option<Color.t>,
@@ -54,7 +55,7 @@ module Config = {
     highlightFontColor: option<Color.t>,
     highlightFontSize: option<float>,
     highlightFontWeight: option<string>,
-    labelProperty: option<t<'payload> => string>,
+    labelProperty: option<link<'payload> => string>,
     mouseCursor: option<MouseCursor.t>,
     opacity: option<float>,
     renderLabel: option<bool>,
@@ -67,6 +68,52 @@ module Config = {
     strokeDashoffset: option<float>,
     strokeLinecap: option<LineCap.t>,
   }
+
+  let create = (
+    ~color=?,
+    ~fontColor=?,
+    ~fontSize=?,
+    ~fontWeight=?,
+    ~highlightColor=?,
+    ~highlightFontColor=?,
+    ~highlightFontSize=?,
+    ~highlightFontWeight=?,
+    ~labelProperty=?,
+    ~mouseCursor=?,
+    ~opacity=?,
+    ~renderLabel=?,
+    ~semanticStrokeWidth=?,
+    ~strokeWidth=?,
+    ~markerHeight=?,
+    ~markerWidth=?,
+    ~curveType=?,
+    ~strokeDasharray=?,
+    ~strokeDashoffset=?,
+    ~strokeLinecap=?,
+    _
+  ) => {
+    color,
+    fontColor,
+    fontSize,
+    fontWeight,
+    highlightColor,
+    highlightFontColor,
+    highlightFontSize,
+    highlightFontWeight,
+    labelProperty,
+    mouseCursor,
+    opacity,
+    renderLabel,
+    semanticStrokeWidth,
+    strokeWidth,
+    markerHeight,
+    markerWidth,
+    curveType,
+    strokeDasharray,
+    strokeDashoffset,
+    strokeLinecap,
+  }
+
 }
 
 let create = (~source, ~target, ~payload=?, ~config=?, ~breakpoints=?, _) => {
