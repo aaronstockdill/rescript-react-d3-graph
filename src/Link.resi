@@ -42,27 +42,27 @@ module Config: {
   }
 
   let create: (
-    ~color:Color.t=?,
-    ~fontColor:Color.t=?,
-    ~fontSize:float=?,
-    ~fontWeight:string=?,
-    ~highlightColor:Color.t=?,
-    ~highlightFontColor:Color.t=?,
-    ~highlightFontSize:float=?,
-    ~highlightFontWeight:string=?,
-    ~labelProperty:link<'payload> => string =?,
-    ~mouseCursor:MouseCursor.t=?,
-    ~opacity:float=?,
-    ~renderLabel:bool=?,
-    ~semanticStrokeWidth:bool=?,
-    ~strokeWidth:float=?,
-    ~markerHeight:float=?,
-    ~markerWidth:float=?,
-    ~curveType:CurveType.t=?,
-    ~strokeDasharray:float=?,
-    ~strokeDashoffset:float=?,
-    ~strokeLinecap:LineCap.t=?,
-    unit
+    ~color: Color.t=?,
+    ~fontColor: Color.t=?,
+    ~fontSize: float=?,
+    ~fontWeight: string=?,
+    ~highlightColor: Color.t=?,
+    ~highlightFontColor: Color.t=?,
+    ~highlightFontSize: float=?,
+    ~highlightFontWeight: string=?,
+    ~labelProperty: link<'payload> => string=?,
+    ~mouseCursor: MouseCursor.t=?,
+    ~opacity: float=?,
+    ~renderLabel: bool=?,
+    ~semanticStrokeWidth: bool=?,
+    ~strokeWidth: float=?,
+    ~markerHeight: float=?,
+    ~markerWidth: float=?,
+    ~curveType: CurveType.t=?,
+    ~strokeDasharray: float=?,
+    ~strokeDashoffset: float=?,
+    ~strokeLinecap: LineCap.t=?,
+    unit,
   ) => t<'payload>
 }
 
@@ -74,3 +74,7 @@ let create: (
   ~breakpoints: array<{"x": float, "y": float}>=?,
   unit,
 ) => t<'payload>
+
+let source: t<'payload> => Node.Id.t
+let target: t<'payload> => Node.Id.t
+let payload: t<'payload> => option<'payload>

@@ -84,3 +84,8 @@ let create: (
   ~y: float=?,
   unit,
 ) => t<'payload>
+
+let id: t<'payload> => Id.t
+let payload: t<'payload> => option<'payload>
+let x: t<'payload> => float
+let y: t<'payload> => float

@@ -90,30 +90,29 @@ module Config = {
     ~strokeDasharray=?,
     ~strokeDashoffset=?,
     ~strokeLinecap=?,
-    _
+    _,
   ) => {
-    color,
-    fontColor,
-    fontSize,
-    fontWeight,
-    highlightColor,
-    highlightFontColor,
-    highlightFontSize,
-    highlightFontWeight,
-    labelProperty,
-    mouseCursor,
-    opacity,
-    renderLabel,
-    semanticStrokeWidth,
-    strokeWidth,
-    markerHeight,
-    markerWidth,
-    curveType,
-    strokeDasharray,
-    strokeDashoffset,
-    strokeLinecap,
+    color: color,
+    fontColor: fontColor,
+    fontSize: fontSize,
+    fontWeight: fontWeight,
+    highlightColor: highlightColor,
+    highlightFontColor: highlightFontColor,
+    highlightFontSize: highlightFontSize,
+    highlightFontWeight: highlightFontWeight,
+    labelProperty: labelProperty,
+    mouseCursor: mouseCursor,
+    opacity: opacity,
+    renderLabel: renderLabel,
+    semanticStrokeWidth: semanticStrokeWidth,
+    strokeWidth: strokeWidth,
+    markerHeight: markerHeight,
+    markerWidth: markerWidth,
+    curveType: curveType,
+    strokeDasharray: strokeDasharray,
+    strokeDashoffset: strokeDashoffset,
+    strokeLinecap: strokeLinecap,
   }
-
 }
 
 let create = (~source, ~target, ~payload=?, ~config=?, ~breakpoints=?, _) => {
@@ -127,3 +126,7 @@ let create = (~source, ~target, ~payload=?, ~config=?, ~breakpoints=?, _) => {
   ->Core.pack(config)
   ->Core.dropUndefinedKeys
 }
+
+let source = t => Core.readKeyExn(t, "source")
+let target = t => Core.readKeyExn(t, "target")
+let payload = t => Core.readKey(t, "payload")

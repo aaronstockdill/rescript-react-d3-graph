@@ -56,7 +56,7 @@ and config<'payload> = {
 
 module Config = {
   type node<'payload> = t<'payload>
-  type  t<'payload> = config<'payload> = {
+  type t<'payload> = config<'payload> = {
     color: option<Color.t>,
     fontColor: option<Color.t>,
     fontSize: option<float>,
@@ -136,3 +136,8 @@ let create = (~id, ~payload=?, ~config=?, ~x=?, ~y=?, _) => {
   ->Core.pack(config)
   ->Core.dropUndefinedKeys
 }
+
+let id = t => Core.readKeyExn(t, "id")
+let payload = t => Core.readKey(t, "payload")
+let x = t => Core.readKeyExn(t, "x")
+let y = t => Core.readKeyExn(t, "y")
