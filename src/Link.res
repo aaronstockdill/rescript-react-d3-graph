@@ -112,7 +112,7 @@ module Config = {
     strokeDasharray: strokeDasharray,
     strokeDashoffset: strokeDashoffset,
     strokeLinecap: strokeLinecap,
-  }
+  }->Core.dropUndefinedKeys
 }
 
 let create = (~source, ~target, ~payload=?, ~config=?, ~breakpoints=?, _) => {

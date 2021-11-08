@@ -59,7 +59,7 @@ module Global = {
     panAndZoom: panAndZoom,
     staticGraph: staticGraph,
     staticGraphWithDragAndDrop: staticGraphWithDragAndDrop,
-  }
+  }->Core.dropUndefinedKeys
 }
 
 module D3 = {
@@ -84,7 +84,7 @@ module D3 = {
     linkLength: linkLength,
     linkStrength: linkStrength,
     disableLinkForce: disableLinkForce,
-  }
+  }->Core.dropUndefinedKeys
 }
 
 type t<'n, 'e> = {

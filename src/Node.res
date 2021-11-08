@@ -122,7 +122,7 @@ module Config = {
     svg: svg,
     symbolType: symbolType,
     viewGenerator: viewGenerator,
-  }
+  }->Core.dropUndefinedKeys
 }
 
 let create = (~id, ~payload=?, ~config=?, ~x=?, ~y=?, _) => {
