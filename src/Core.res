@@ -8,4 +8,7 @@ external readKey: ('a, string) => option<'val> = "readKey"
 external dropUndefinedKeys: 'a => 'a = "dropUndefinedKeys"
 
 @module("./CoreHelper")
+external setKey: ('a, string, 'b) => 'c = "setKey"
+
+@module("./CoreHelper")
 external pack: ('a, 'b) => 'c = "pack"

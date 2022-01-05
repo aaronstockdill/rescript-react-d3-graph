@@ -40,26 +40,27 @@ module Global = {
     ~staticGraph=?,
     ~staticGraphWithDragAndDrop=?,
     _,
-  ) => {
-    automaticRearrangeAfterDropNode: automaticRearrangeAfterDropNode,
-    collapsible: collapsible,
-    directed: directed,
-    initialZoom: initialZoom,
-    focusZoom: focusZoom,
-    maxZoom: maxZoom,
-    minZoom: minZoom,
-    freezeAllDragEvents: freezeAllDragEvents,
-    focusAnimationDuration: focusAnimationDuration,
-    width: width,
-    height: height,
-    nodeHighlightBehavior: nodeHighlightBehavior,
-    linkHighlightBehavior: linkHighlightBehavior,
-    highlightDegree: highlightDegree,
-    highlightOpacity: highlightOpacity,
-    panAndZoom: panAndZoom,
-    staticGraph: staticGraph,
-    staticGraphWithDragAndDrop: staticGraphWithDragAndDrop,
-  }->Core.dropUndefinedKeys
+  ) =>
+    {
+      automaticRearrangeAfterDropNode: automaticRearrangeAfterDropNode,
+      collapsible: collapsible,
+      directed: directed,
+      initialZoom: initialZoom,
+      focusZoom: focusZoom,
+      maxZoom: maxZoom,
+      minZoom: minZoom,
+      freezeAllDragEvents: freezeAllDragEvents,
+      focusAnimationDuration: focusAnimationDuration,
+      width: width,
+      height: height,
+      nodeHighlightBehavior: nodeHighlightBehavior,
+      linkHighlightBehavior: linkHighlightBehavior,
+      highlightDegree: highlightDegree,
+      highlightOpacity: highlightOpacity,
+      panAndZoom: panAndZoom,
+      staticGraph: staticGraph,
+      staticGraphWithDragAndDrop: staticGraphWithDragAndDrop,
+    }->Core.dropUndefinedKeys
 }
 
 module D3 = {
@@ -78,13 +79,14 @@ module D3 = {
     ~linkStrength=?,
     ~disableLinkForce=?,
     _,
-  ) => {
-    alphaTarget: alphaTarget,
-    gravity: gravity,
-    linkLength: linkLength,
-    linkStrength: linkStrength,
-    disableLinkForce: disableLinkForce,
-  }->Core.dropUndefinedKeys
+  ) =>
+    {
+      alphaTarget: alphaTarget,
+      gravity: gravity,
+      linkLength: linkLength,
+      linkStrength: linkStrength,
+      disableLinkForce: disableLinkForce,
+    }->Core.dropUndefinedKeys
 }
 
 type t<'n, 'e> = {

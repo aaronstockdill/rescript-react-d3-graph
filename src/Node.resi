@@ -89,3 +89,5 @@ let id: t<'payload> => Id.t
 let payload: t<'payload> => option<'payload>
 let x: t<'payload> => float
 let y: t<'payload> => float
+
+let updatePayload: (t<'p>, option<'p> => option<'q>) => t<'q>

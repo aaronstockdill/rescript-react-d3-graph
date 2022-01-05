@@ -101,28 +101,29 @@ module Config = {
     ~symbolType=?,
     ~viewGenerator=?,
     (),
-  ) => {
-    color: color,
-    fontColor: fontColor,
-    fontSize: fontSize,
-    fontWeight: fontWeight,
-    highlightColor: highlightColor,
-    highlightFontSize: highlightFontSize,
-    highlightFontWeight: highlightFontWeight,
-    highlightStrokeColor: highlightStrokeColor,
-    highlightStrokeWidth: highlightStrokeWidth,
-    labelPosition: labelPosition,
-    labelProperty: labelProperty,
-    mouseCursor: mouseCursor,
-    opacity: opacity,
-    renderLabel: renderLabel,
-    size: size,
-    strokeColor: strokeColor,
-    strokeWidth: strokeWidth,
-    svg: svg,
-    symbolType: symbolType,
-    viewGenerator: viewGenerator,
-  }->Core.dropUndefinedKeys
+  ) =>
+    {
+      color: color,
+      fontColor: fontColor,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      highlightColor: highlightColor,
+      highlightFontSize: highlightFontSize,
+      highlightFontWeight: highlightFontWeight,
+      highlightStrokeColor: highlightStrokeColor,
+      highlightStrokeWidth: highlightStrokeWidth,
+      labelPosition: labelPosition,
+      labelProperty: labelProperty,
+      mouseCursor: mouseCursor,
+      opacity: opacity,
+      renderLabel: renderLabel,
+      size: size,
+      strokeColor: strokeColor,
+      strokeWidth: strokeWidth,
+      svg: svg,
+      symbolType: symbolType,
+      viewGenerator: viewGenerator,
+    }->Core.dropUndefinedKeys
 }
 
 let create = (~id, ~payload=?, ~config=?, ~x=?, ~y=?, _) => {
@@ -141,3 +142,8 @@ let id = t => Core.readKeyExn(t, "id")
 let payload = t => Core.readKey(t, "payload")
 let x = t => Core.readKeyExn(t, "x")
 let y = t => Core.readKeyExn(t, "y")
+
+let updatePayload = (t, f) => {
+  let p = Core.readKey(t, "payload")
+  Core.setKey(t, "payload", f(p))->Core.dropUndefinedKeys
+}
