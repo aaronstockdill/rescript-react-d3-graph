@@ -42,6 +42,8 @@ and config<'payload> = {
   strokeDasharray: option<float>,
   strokeDashoffset: option<float>,
   strokeLinecap: option<LineCap.t>,
+  offsetSource: option<{"dx": float, "dy": float}>,
+  offsetTarget: option<{"dx": float, "dy": float}>,
 }
 
 module Config = {
@@ -67,6 +69,8 @@ module Config = {
     strokeDasharray: option<float>,
     strokeDashoffset: option<float>,
     strokeLinecap: option<LineCap.t>,
+    offsetSource: option<{"dx": float, "dy": float}>,
+    offsetTarget: option<{"dx": float, "dy": float}>,
   }
 
   let create = (
@@ -90,29 +94,34 @@ module Config = {
     ~strokeDasharray=?,
     ~strokeDashoffset=?,
     ~strokeLinecap=?,
+    ~offsetSource=?,
+    ~offsetTarget=?,
     _,
-  ) => {
-    color: color,
-    fontColor: fontColor,
-    fontSize: fontSize,
-    fontWeight: fontWeight,
-    highlightColor: highlightColor,
-    highlightFontColor: highlightFontColor,
-    highlightFontSize: highlightFontSize,
-    highlightFontWeight: highlightFontWeight,
-    labelProperty: labelProperty,
-    mouseCursor: mouseCursor,
-    opacity: opacity,
-    renderLabel: renderLabel,
-    semanticStrokeWidth: semanticStrokeWidth,
-    strokeWidth: strokeWidth,
-    markerHeight: markerHeight,
-    markerWidth: markerWidth,
-    curveType: curveType,
-    strokeDasharray: strokeDasharray,
-    strokeDashoffset: strokeDashoffset,
-    strokeLinecap: strokeLinecap,
-  }->Core.dropUndefinedKeys
+  ) =>
+    {
+      color: color,
+      fontColor: fontColor,
+      fontSize: fontSize,
+      fontWeight: fontWeight,
+      highlightColor: highlightColor,
+      highlightFontColor: highlightFontColor,
+      highlightFontSize: highlightFontSize,
+      highlightFontWeight: highlightFontWeight,
+      labelProperty: labelProperty,
+      mouseCursor: mouseCursor,
+      opacity: opacity,
+      renderLabel: renderLabel,
+      semanticStrokeWidth: semanticStrokeWidth,
+      strokeWidth: strokeWidth,
+      markerHeight: markerHeight,
+      markerWidth: markerWidth,
+      curveType: curveType,
+      strokeDasharray: strokeDasharray,
+      strokeDashoffset: strokeDashoffset,
+      strokeLinecap: strokeLinecap,
+      offsetSource: offsetSource,
+      offsetTarget: offsetTarget,
+    }->Core.dropUndefinedKeys
 }
 
 let create = (~source, ~target, ~payload=?, ~config=?, ~breakpoints=?, _) => {
