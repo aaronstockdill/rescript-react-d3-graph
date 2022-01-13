@@ -21,7 +21,7 @@
   },
   "peerDependencies": {
     "@rescript/react": "^0.10.3",
-    "d3": "^5.16.0",
+    "d3": "^7.3.0",
     "react-d3-graph": "file:../react-d3-graph"
   }
 }
