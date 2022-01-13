@@ -14,8 +14,8 @@ let make: (
   ~onMouseOverLink: (ReactEvent.Pointer.t, ~source: Node.Id.t, ~target: Node.Id.t) => unit=?,
   ~onMouseOutLink: (ReactEvent.Pointer.t, ~source: Node.Id.t, ~target: Node.Id.t) => unit=?,
   ~onNodePositionChange: (Node.Id.t, ~x: float, ~y: float) => unit=?,
-  ~onNodeDragStart: (Node.Id.t, ~x: float, ~y: float) => unit=?,
-  ~onNodeDragMove: (Node.Id.t, ~x: float, ~y: float) => unit=?,
-  ~onNodeDragEnd: (Node.Id.t, ~x: float, ~y: float) => unit=?,
+  ~onNodeDragStart: (ReactEvent.Pointer.t, Node.Id.t, ~x: float, ~y: float) => unit=?,
+  ~onNodeDragMove: (ReactEvent.Pointer.t, Node.Id.t, ~x: float, ~y: float) => unit=?,
+  ~onNodeDragEnd: (ReactEvent.Pointer.t, Node.Id.t, ~x: float, ~y: float) => unit=?,
   ~onZoomChange: (~oldZoom: float, ~newZoom: float) => unit=?,
 ) => React.element
