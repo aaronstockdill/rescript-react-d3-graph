@@ -14,9 +14,16 @@ module LineCap = {
   let square = "square"
 }
 
+module Id = {
+  type t = string
+  let ofString = t => t
+  let toString = t => t
+}
+
 type rec t<'payload> = {
   source: Node.Id.t,
   target: Node.Id.t,
+  id: option<Id.t>,
   payload: option<'payload>,
   breakpoints: option<array<{"x": float, "y": float}>>,
   config: option<config<'payload>>,
@@ -124,10 +131,11 @@ module Config = {
     }->Core.dropUndefinedKeys
 }
 
-let create = (~source, ~target, ~payload=?, ~config=?, ~breakpoints=?, _) => {
+let create = (~source, ~target, ~id=?, ~payload=?, ~config=?, ~breakpoints=?, _) => {
   {
     source: source,
     target: target,
+    id: id,
     payload: payload,
     breakpoints: breakpoints,
     config: None,
@@ -138,4 +146,5 @@ let create = (~source, ~target, ~payload=?, ~config=?, ~breakpoints=?, _) => {
 
 let source = t => Core.readKeyExn(t, "source")
 let target = t => Core.readKeyExn(t, "target")
+let id = t => Core.readKey(t, "id")
 let payload = t => Core.readKey(t, "payload")

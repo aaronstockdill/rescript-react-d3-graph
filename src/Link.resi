@@ -16,6 +16,13 @@ module LineCap: {
   let square: t
 }
 
+module Id: {
+  type t
+
+  let ofString: string => t
+  let toString: t => string
+}
+
 module Config: {
   type link<'payload> = t<'payload>
   type t<'payload> = {
@@ -73,6 +80,7 @@ module Config: {
 let create: (
   ~source: Node.Id.t,
   ~target: Node.Id.t,
+  ~id: Id.t=?,
   ~payload: 'payload=?,
   ~config: Config.t<'payload>=?,
   ~breakpoints: array<{"x": float, "y": float}>=?,
@@ -81,4 +89,5 @@ let create: (
 
 let source: t<'payload> => Node.Id.t
 let target: t<'payload> => Node.Id.t
+let id: t<'payload> => option<Id.t>
 let payload: t<'payload> => option<'payload>
