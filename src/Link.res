@@ -1,9 +1,10 @@
 module CurveType = {
   type t = string
 
-  let straight = "straight"
-  let smooth = "smooth"
-  let full = "full"
+  let straight = "STRAIGHT"
+  let smooth = "SMOOTH"
+  let full = "FULL"
+  let catmullRom = "CATMULL_ROM"
 }
 
 module LineCap = {

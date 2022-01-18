@@ -6,6 +6,7 @@ module CurveType: {
   let straight: t
   let smooth: t // A slight bend
   let full: t // Follow a circle arc
+  let catmullRom: t // Very smooth interpolation
 }
 
 module LineCap: {
