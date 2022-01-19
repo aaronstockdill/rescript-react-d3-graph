@@ -30,6 +30,7 @@ type rec t<'payload> = {
   config: option<config<'payload>>,
   x: option<float>,
   y: option<float>,
+  selected: bool,
 }
 and config<'payload> = {
   color: option<Color.t>,
@@ -132,6 +133,7 @@ let create = (~id, ~payload=?, ~config=?, ~x=?, ~y=?, _) => {
     payload: payload,
     x: x,
     y: y,
+    selected: false,
     config: None,
   }
   ->Core.pack(config)
@@ -142,6 +144,7 @@ let id = t => Core.readKeyExn(t, "id")
 let payload = t => Core.readKey(t, "payload")
 let x = t => Core.readKeyExn(t, "x")
 let y = t => Core.readKeyExn(t, "y")
+let selected = t => Core.readKey(t, "selected")->Belt.Option.getWithDefault(false)
 
 let move = (t, ~dx, ~dy) => {
   let x = x(t)

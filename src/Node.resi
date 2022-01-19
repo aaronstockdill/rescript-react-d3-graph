@@ -89,6 +89,7 @@ let id: t<'payload> => Id.t
 let payload: t<'payload> => option<'payload>
 let x: t<'payload> => float
 let y: t<'payload> => float
+let selected: t<'payload> => bool
 
 let move: (t<'payload>, ~dx: float, ~dy: float) => t<'payload>
 let updatePayload: (t<'p>, option<'p> => option<'q>) => t<'q>

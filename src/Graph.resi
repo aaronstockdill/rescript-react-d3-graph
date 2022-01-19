@@ -1,3 +1,12 @@
+module Selection: {
+  type t = {
+    nodes: array<Node.Id.t>,
+    links: array<Link.Id.t>,
+  }
+
+  let empty: t
+}
+
 @react.component
 let make: (
   ~id: string,
@@ -18,4 +27,5 @@ let make: (
   ~onNodeDragMove: (ReactEvent.Pointer.t, Node.Id.t, ~x: float, ~y: float) => unit=?,
   ~onNodeDragEnd: (ReactEvent.Pointer.t, Node.Id.t, ~x: float, ~y: float) => unit=?,
   ~onZoomChange: (~oldZoom: float, ~newZoom: float) => unit=?,
+  ~onSelectionChange: (~oldSelection: Selection.t, ~newSelection: Selection.t) => unit=?,
 ) => React.element

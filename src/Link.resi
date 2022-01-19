@@ -92,3 +92,4 @@ let source: t<'payload> => Node.Id.t
 let target: t<'payload> => Node.Id.t
 let id: t<'payload> => option<Id.t>
 let payload: t<'payload> => option<'payload>
+let selected: t<'payload> => bool

@@ -27,6 +27,7 @@ type rec t<'payload> = {
   id: option<Id.t>,
   payload: option<'payload>,
   breakpoints: option<array<{"x": float, "y": float}>>,
+  selected: bool,
   config: option<config<'payload>>,
 }
 and config<'payload> = {
@@ -139,6 +140,7 @@ let create = (~source, ~target, ~id=?, ~payload=?, ~config=?, ~breakpoints=?, _)
     id: id,
     payload: payload,
     breakpoints: breakpoints,
+    selected: false,
     config: None,
   }
   ->Core.pack(config)
@@ -149,3 +151,4 @@ let source = t => Core.readKeyExn(t, "source")
 let target = t => Core.readKeyExn(t, "target")
 let id = t => Core.readKey(t, "id")
 let payload = t => Core.readKey(t, "payload")
+let selected = t => Core.readKey(t, "selected")->Belt.Option.getWithDefault(false)
