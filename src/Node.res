@@ -149,3 +149,5 @@ let updatePayload = (t, f) => {
   let p = Core.readKey(t, "payload")
   Core.setKey(t, "payload", f(p))->Core.dropUndefinedKeys
 }
+let setX = (t, x) => Core.setKey(t, "x", x)->Core.dropUndefinedKeys
+let setY = (t, y) => Core.setKey(t, "y", y)->Core.dropUndefinedKeys
