@@ -16,7 +16,7 @@ external make: (
   ~data: Data.t<'n, 'e>=?,
   ~config: Config.t<'n, 'e>=?,
   ~style: ReactDOM.Style.t=?,
-  ~keybindings: Js.Dict.t<ReactEvent.Keyboard.t => unit>=?,
+  ~keybindings: Js.Dict.t<(ReactEvent.Keyboard.t, ~x:float, ~y:float) => unit>=?,
   ~onClickGraph: ReactEvent.Pointer.t => unit=?,
   ~onClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
   ~onDoubleClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
