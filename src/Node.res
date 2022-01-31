@@ -149,5 +149,12 @@ let updatePayload = (t, f) => {
   let p = Core.readKey(t, "payload")
   Core.setKey(t, "payload", f(p))->Core.dropUndefinedKeys
 }
+let updateConfig = (t: t<'a>, f) => {
+  let t' = Core.duplicate(t)
+  let cfg: Config.t<'a> = Obj.magic(t')
+  let newcfg = f(cfg)
+  let t'': t<'a> = Core.pack(t', newcfg)
+  t''->Core.dropUndefinedKeys
+}
 let setX = (t, x) => Core.setKey(t, "x", x)->Core.dropUndefinedKeys
 let setY = (t, y) => Core.setKey(t, "y", y)->Core.dropUndefinedKeys

@@ -92,5 +92,6 @@ let y: t<'payload> => float
 let selected: t<'payload> => bool
 
 let updatePayload: (t<'p>, option<'p> => option<'q>) => t<'q>
+let updateConfig: (t<'p>, Config.t<'p> => Config.t<'p>) => t<'p>
 let setX: (t<'p>, float) => t<'p>
 let setY: (t<'p>, float) => t<'p>

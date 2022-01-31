@@ -3,3 +3,4 @@ let readKeyExn: ('a, string) => 'b
 let setKey: ('a, string, 'b) => 'c
 let dropUndefinedKeys: 'a => 'a
 let pack: ('a, 'b) => 'c
+let duplicate: 'a => 'a

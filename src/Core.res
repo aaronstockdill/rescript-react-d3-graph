@@ -12,3 +12,6 @@ external setKey: ('a, string, 'b) => 'c = "setKey"
 
 @module("./CoreHelper")
 external pack: ('a, 'b) => 'c = "pack"
+
+@module("./CoreHelper")
+external duplicate: 'a => 'a = "duplicate"
