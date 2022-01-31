@@ -11,6 +11,7 @@ module Selection: {
 let make: (
   ~id: string,
   ~data: Data.t<'n, 'e>=?,
+  ~selection: Selection.t=?,
   ~config: Config.t<'n, 'e>=?,
   ~style: ReactDOM.Style.t=?,
   ~keybindings: Js.Dict.t<(ReactEvent.Keyboard.t, ~x:float, ~y:float) => unit>=?,
