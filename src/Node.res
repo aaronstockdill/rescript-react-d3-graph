@@ -156,5 +156,6 @@ let updateConfig = (t: t<'a>, f) => {
   let t'': t<'a> = Core.pack(t', newcfg)
   t''->Core.dropUndefinedKeys
 }
+let setId = (t, id) => Core.setKey(t, "id", id)->Core.dropUndefinedKeys
 let setX = (t, x) => Core.setKey(t, "x", x)->Core.dropUndefinedKeys
 let setY = (t, y) => Core.setKey(t, "y", y)->Core.dropUndefinedKeys
