@@ -1,6 +1,8 @@
 export const duplicate = o => {
     if (o === null) {
         return null
+    } else if (o === undefined) {
+        return undefined
     }
     let p = {}
     for (const [key, value] of Object.entries(o)) {
