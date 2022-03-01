@@ -26,6 +26,7 @@ type rec t<'payload> = {
   target: Node.Id.t,
   id: option<Id.t>,
   payload: option<'payload>,
+  label: option<string>,
   breakpoints: option<array<{"x": float, "y": float}>>,
   selected: bool,
   config: option<config<'payload>>,
@@ -45,6 +46,8 @@ and config<'payload> = {
   renderLabel: option<bool>,
   semanticStrokeWidth: option<bool>,
   strokeWidth: option<float>,
+  markerStart: option<string>,
+  markerEnd: option<string>,
   markerHeight: option<float>,
   markerWidth: option<float>,
   @as("type") curveType: option<CurveType.t>,
@@ -72,6 +75,8 @@ module Config = {
     renderLabel: option<bool>,
     semanticStrokeWidth: option<bool>,
     strokeWidth: option<float>,
+    markerStart: option<string>,
+    markerEnd: option<string>,
     markerHeight: option<float>,
     markerWidth: option<float>,
     @as("type") curveType: option<CurveType.t>,
@@ -97,6 +102,8 @@ module Config = {
     ~renderLabel=?,
     ~semanticStrokeWidth=?,
     ~strokeWidth=?,
+    ~markerStart=?,
+    ~markerEnd=?,
     ~markerHeight=?,
     ~markerWidth=?,
     ~curveType=?,
@@ -122,6 +129,8 @@ module Config = {
       renderLabel: renderLabel,
       semanticStrokeWidth: semanticStrokeWidth,
       strokeWidth: strokeWidth,
+      markerStart: markerStart,
+      markerEnd: markerEnd,
       markerHeight: markerHeight,
       markerWidth: markerWidth,
       curveType: curveType,
@@ -133,12 +142,13 @@ module Config = {
     }->Core.dropUndefinedKeys
 }
 
-let create = (~source, ~target, ~id=?, ~payload=?, ~config=?, ~breakpoints=?, _) => {
+let create = (~source, ~target, ~id=?, ~payload=?, ~label=?, ~config=?, ~breakpoints=?, _) => {
   {
     source: source,
     target: target,
     id: id,
     payload: payload,
+    label: label,
     breakpoints: breakpoints,
     selected: false,
     config: None,

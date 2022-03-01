@@ -13,7 +13,13 @@ export const duplicate = o => {
         } else if (value === null) {
             p[key] = null;
         } else if (typeof value === "object") {
-            p[key] = duplicate(value);
+            if (value instanceof Array) {
+                p[key] = value.map(duplicate);
+            } else {
+                p[key] = duplicate(value);
+            }
+        } else if (typeof value === "symbol") {
+            p[key] = value;
         } else {
             p[key] = JSON.parse(JSON.stringify(value));
         }
