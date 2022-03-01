@@ -87,7 +87,6 @@ let create: (
   ~target: Node.Id.t,
   ~id: Id.t=?,
   ~payload: 'payload=?,
-  ~label: string=?,
   ~config: Config.t<'payload>=?,
   ~breakpoints: array<{"x": float, "y": float}>=?,
   unit,

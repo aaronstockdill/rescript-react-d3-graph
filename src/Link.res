@@ -26,7 +26,6 @@ type rec t<'payload> = {
   target: Node.Id.t,
   id: option<Id.t>,
   payload: option<'payload>,
-  label: option<string>,
   breakpoints: option<array<{"x": float, "y": float}>>,
   selected: bool,
   config: option<config<'payload>>,
@@ -142,13 +141,12 @@ module Config = {
     }->Core.dropUndefinedKeys
 }
 
-let create = (~source, ~target, ~id=?, ~payload=?, ~label=?, ~config=?, ~breakpoints=?, _) => {
+let create = (~source, ~target, ~id=?, ~payload=?, ~config=?, ~breakpoints=?, _) => {
   {
     source: source,
     target: target,
     id: id,
     payload: payload,
-    label: label,
     breakpoints: breakpoints,
     selected: false,
     config: None,
