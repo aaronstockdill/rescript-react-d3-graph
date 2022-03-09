@@ -19,6 +19,14 @@ module Global = {
     panAndZoom: option<bool>,
     staticGraph: option<bool>,
     staticGraphWithDragAndDrop: option<bool>,
+    grid: option<{
+      "minorStep": float,
+      "majorStep": float,
+      "minorColor": Color.t,
+      "majorColor": Color.t,
+      "minorWidth": float,
+      "majorWidth": float,
+    }>,
   }
 
   let create = (
@@ -41,6 +49,7 @@ module Global = {
     ~panAndZoom=?,
     ~staticGraph=?,
     ~staticGraphWithDragAndDrop=?,
+    ~grid=?,
     _,
   ) =>
     {
@@ -63,6 +72,7 @@ module Global = {
       panAndZoom: panAndZoom,
       staticGraph: staticGraph,
       staticGraphWithDragAndDrop: staticGraphWithDragAndDrop,
+      grid: grid,
     }->Core.dropUndefinedKeys
 }
 

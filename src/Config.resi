@@ -21,6 +21,14 @@ module Global: {
     panAndZoom: option<bool>,
     staticGraph: option<bool>,
     staticGraphWithDragAndDrop: option<bool>,
+    grid: option<{
+      "minorStep": float,
+      "majorStep": float,
+      "minorColor": Color.t,
+      "majorColor": Color.t,
+      "minorWidth": float,
+      "majorWidth": float,
+    }>,
   }
 
   let create: (
@@ -43,6 +51,14 @@ module Global: {
     ~panAndZoom: bool=?,
     ~staticGraph: bool=?,
     ~staticGraphWithDragAndDrop: bool=?,
+    ~grid: {
+      "minorStep": float,
+      "majorStep": float,
+      "minorColor": Color.t,
+      "majorColor": Color.t,
+      "minorWidth": float,
+      "majorWidth": float,
+    }=?,
     unit,
   ) => t
 }

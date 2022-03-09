@@ -15,6 +15,7 @@ let make: (
   ~config: Config.t<'n, 'e>=?,
   ~style: ReactDOM.Style.t=?,
   ~keybindings: Js.Dict.t<(ReactEvent.Keyboard.t, ~x: float, ~y: float) => unit>=?,
+  ~showGrid: bool=?,
   ~onClickGraph: ReactEvent.Pointer.t => unit=?,
   ~onClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
   ~onDoubleClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
