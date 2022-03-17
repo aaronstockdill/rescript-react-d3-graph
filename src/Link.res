@@ -54,8 +54,12 @@ and config<'payload> = {
   strokeDasharray: option<float>,
   strokeDashoffset: option<float>,
   strokeLinecap: option<LineCap.t>,
-  offsetSource: option<{"dx": float, "dy": float}>,
-  offsetTarget: option<{"dx": float, "dy": float}>,
+  offsetSource: option<(option<{"id": Node.Id.t, "x": float, "y": float}>,
+                        option<{"id": Node.Id.t, "x": float, "y": float}>,
+                        option<array<{"x": float, "y": float}>>) => {"dx": float, "dy": float}>,
+  offsetTarget: option<(option<{"id": Node.Id.t, "x": float, "y": float}>,
+                        option<{"id": Node.Id.t, "x": float, "y": float}>,
+                        option<array<{"x": float, "y": float}>>) => {"dx": float, "dy": float}>,
 }
 
 module Config = {
@@ -84,8 +88,12 @@ module Config = {
     strokeDasharray: option<float>,
     strokeDashoffset: option<float>,
     strokeLinecap: option<LineCap.t>,
-    offsetSource: option<{"dx": float, "dy": float}>,
-    offsetTarget: option<{"dx": float, "dy": float}>,
+    offsetSource: option<(option<{"id": Node.Id.t, "x": float, "y": float}>,
+                          option<{"id": Node.Id.t, "x": float, "y": float}>,
+                          option<array<{"x": float, "y": float}>>) => {"dx": float, "dy": float}>,
+    offsetTarget: option<(option<{"id": Node.Id.t, "x": float, "y": float}>,
+                          option<{"id": Node.Id.t, "x": float, "y": float}>,
+                          option<array<{"x": float, "y": float}>>) => {"dx": float, "dy": float}>,
   }
 
   let create = (
