@@ -110,3 +110,4 @@ let selected: t<'payload> => bool
 
 let setSource: (t<'payload>, Node.Id.t) => t<'payload>
 let setTarget: (t<'payload>, Node.Id.t) => t<'payload>
+let updateConfig: (t<'p>, Config.t<'p> => Config.t<'p>) => t<'p>

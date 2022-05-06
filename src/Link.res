@@ -175,3 +175,10 @@ let selected = t => Core.readKey(t, "selected")->Belt.Option.getWithDefault(fals
 
 let setSource = (t, source) => t->Core.duplicate->Core.setKey("source", source)
 let setTarget = (t, target) => t->Core.duplicate->Core.setKey("target", target)
+let updateConfig = (t: t<'a>, f) => {
+  let t' = Core.duplicate(t)
+  let cfg: Config.t<'a> = Obj.magic(t')
+  let newcfg = f(cfg)
+  let t'': t<'a> = Core.pack(t', newcfg)
+  t''->Core.dropUndefinedKeys
+}
