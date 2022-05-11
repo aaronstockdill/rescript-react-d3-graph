@@ -23,7 +23,14 @@ let sliceHexString = s => {
   (r, g, b)
 }
 let hexToFloat = h => Js.Float.fromString(Js.String2.concat("0x", h)) /. 255.0
-let floatToHex = f => floatToInt(f)->Js.Int.toStringWithRadix(~radix=16)
+let floatToHex = f => {
+  let s = floatToInt(f)->Js.Int.toStringWithRadix(~radix=16)
+  if String.length(s) < 2 {
+    "0" ++ s
+  } else {
+    s
+  }
+}
 
 let canonOfInternal = s =>
   if isHexString(s) {
