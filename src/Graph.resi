@@ -7,6 +7,11 @@ module Selection: {
   let empty: t
 }
 
+module ViewTransform: {
+  type t
+  let init: t
+}
+
 @react.component
 let make: (
   ~id: string,
@@ -16,6 +21,7 @@ let make: (
   ~style: ReactDOM.Style.t=?,
   ~keybindings: Js.Dict.t<(ReactEvent.Keyboard.t, ~x: float, ~y: float) => unit>=?,
   ~showGrid: bool=?,
+  ~viewTransform: ViewTransform.t=?,
   ~onClickGraph: ReactEvent.Pointer.t => unit=?,
   ~onClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
   ~onDoubleClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
@@ -27,6 +33,6 @@ let make: (
   ~onMouseOverLink: (ReactEvent.Pointer.t, ~source: Node.Id.t, ~target: Node.Id.t) => unit=?,
   ~onMouseOutLink: (ReactEvent.Pointer.t, ~source: Node.Id.t, ~target: Node.Id.t) => unit=?,
   ~onNodePositionChange: (Node.Id.t, ~x: float, ~y: float) => unit=?,
-  ~onZoomChange: (~oldZoom: float, ~newZoom: float) => unit=?,
+  ~onZoomChange: (~oldZoom: ViewTransform.t, ~newZoom: ViewTransform.t) => unit=?,
   ~onSelectionChange: (~oldSelection: Selection.t, ~newSelection: Selection.t) => unit=?,
 ) => React.element

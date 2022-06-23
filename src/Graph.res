@@ -10,6 +10,12 @@ module Selection = {
   }
 }
 
+module ViewTransform = {
+  type t
+  @module("d3-zoom")
+  @val external init: t = "zoomIdentity"
+}
+
 @module("react-d3-graph") @react.component
 external make: (
   ~id: string,
@@ -19,6 +25,7 @@ external make: (
   ~style: ReactDOM.Style.t=?,
   ~keybindings: Js.Dict.t<(ReactEvent.Keyboard.t, ~x: float, ~y: float) => unit>=?,
   ~showGrid: bool=?,
+  ~viewTransform: ViewTransform.t=?,
   ~onClickGraph: ReactEvent.Pointer.t => unit=?,
   ~onClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
   ~onDoubleClickNode: (ReactEvent.Pointer.t, Node.Id.t, Node.t<'n>) => unit=?,
@@ -30,6 +37,6 @@ external make: (
   ~onMouseOverLink: (ReactEvent.Pointer.t, ~source: Node.Id.t, ~target: Node.Id.t) => unit=?,
   ~onMouseOutLink: (ReactEvent.Pointer.t, ~source: Node.Id.t, ~target: Node.Id.t) => unit=?,
   ~onNodePositionChange: (Node.Id.t, ~x: float, ~y: float) => unit=?,
-  ~onZoomChange: (~oldZoom: float, ~newZoom: float) => unit=?,
+  ~onZoomChange: (~oldZoom: ViewTransform.t, ~newZoom: ViewTransform.t) => unit=?,
   ~onSelectionChange: (~oldSelection: Selection.t, ~newSelection: Selection.t) => unit=?,
 ) => React.element = "Graph"
