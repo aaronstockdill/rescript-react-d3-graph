@@ -182,3 +182,7 @@ let updateConfig = (t: t<'a>, f) => {
   let t'': t<'a> = Core.pack(t', newcfg)
   t''->Core.dropUndefinedKeys
 }
+let updatePayload = (t, f) => {
+  let p = Core.readKey(t, "payload")
+  Core.setKey(t, "payload", f(p))->Core.dropUndefinedKeys
+}
