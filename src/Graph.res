@@ -14,6 +14,11 @@ module ViewTransform = {
   type t
   @module("d3-zoom")
   @val external init: t = "zoomIdentity"
+  @send external translate: (t, ~x:float, ~y:float) => t = "translate"
+  @send external scale: (t, float) => t = "scale"
+  @get external x: t => float = "x"
+  @get external y: t => float = "y"
+  @get external k: t => float = "k"
 }
 
 @module("react-d3-graph") @react.component

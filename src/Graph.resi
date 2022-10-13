@@ -9,7 +9,15 @@ module Selection: {
 
 module ViewTransform: {
   type t
+
   let init: t
+
+  let translate: (t, ~x:float, ~y:float) => t
+  let scale: (t, float) => t
+
+  let x: t => float
+  let y: t => float
+  let k: t => float
 }
 
 @react.component
