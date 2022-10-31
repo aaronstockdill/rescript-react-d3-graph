@@ -173,6 +173,7 @@ let id = t => Core.readKey(t, "id")
 let payload = t => Core.readKey(t, "payload")
 let selected = t => Core.readKey(t, "selected")->Belt.Option.getWithDefault(false)
 
+let setId = (t, id) => t->Core.duplicate->Core.setKey("id", id)
 let setSource = (t, source) => t->Core.duplicate->Core.setKey("source", source)
 let setTarget = (t, target) => t->Core.duplicate->Core.setKey("target", target)
 let updateConfig = (t: t<'a>, f) => {

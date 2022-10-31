@@ -108,6 +108,7 @@ let id: t<'payload> => option<Id.t>
 let payload: t<'payload> => option<'payload>
 let selected: t<'payload> => bool
 
+let setId: (t<'payload>, Id.t) => t<'payload>
 let setSource: (t<'payload>, Node.Id.t) => t<'payload>
 let setTarget: (t<'payload>, Node.Id.t) => t<'payload>
 let updateConfig: (t<'p>, Config.t<'p> => Config.t<'p>) => t<'p>
